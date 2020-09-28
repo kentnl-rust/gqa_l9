@@ -1,0 +1,15 @@
+[package]
+
+name = "time"
+version = "0.1.0"
+authors = ["The Rust Project Developers"]
+build = "build.rs"
+license = "MIT/Apache-2.0"
+homepage = "https://github.com/rust-lang/time"
+repository = "https://github.com/rust-lang/time"
+description = """
+Utilities for working with time-related functions in Rust.
+"""
+
+[build-dependencies]
+gcc = "0.1.0"

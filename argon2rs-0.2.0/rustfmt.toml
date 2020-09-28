@@ -1,0 +1,8 @@
+max_width = 80
+fn_call_width = 8900
+fn_args_density = "Compressed"
+reorder_imports = true
+single_line_if_else = true
+fn_single_line = true
+normalise_comments = false
+wrap_comments = false

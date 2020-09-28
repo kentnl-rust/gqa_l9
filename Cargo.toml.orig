@@ -1,0 +1,17 @@
+[package]
+name = "gqa_l9"
+version = "0.1.0"
+authors = ["Kent Fredric <kentnl@gentoo.org>"]
+edition = "2018"
+
+[dependencies.static-http-cache]
+version = "~0.2"
+default-features = false
+
+[dependencies.directories]
+version= "~3.0"
+default-features = false
+
+[dependencies.reqwest]
+version = "~0.9"
+default-features = false
