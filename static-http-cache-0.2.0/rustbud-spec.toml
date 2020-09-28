@@ -1,0 +1,4 @@
+[toolchain.optional]
+rls-preview = ["*"]
+rust-src = ["*"]
+rust-std = ["x86_64-pc-windows-gnu"]
