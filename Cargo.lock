@@ -17,16 +17,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "advapi32-sys"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e06588080cb19d0acb6739808aafa5f26bfb2ca015b2b6370028b44cf7cb8a9a"
-dependencies = [
- "winapi 0.2.5",
- "winapi-build",
-]
-
-[[package]]
 name = "argon2rs"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -81,12 +71,6 @@ dependencies = [
 
 [[package]]
 name = "bitflags"
-version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aad18937a628ec6abcd26d1489012cc0e18c21798210f491af69ded9b881106d"
-
-[[package]]
-name = "bitflags"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f5cde24d1b2e2216a726368b2363a273739c91f4e3eb4e0dd12d672d396ad989"
@@ -134,7 +118,7 @@ version = "0.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ddfc5b9aa5d4507acaf872de71051dfd0e309860e88966e1051e462a077aac4f"
 dependencies = [
- "bitflags 1.0.0",
+ "bitflags",
 ]
 
 [[package]]
@@ -214,7 +198,7 @@ dependencies = [
  "arrayvec",
  "cfg-if",
  "crossbeam-utils 0.4.0",
- "lazy_static 1.1.0",
+ "lazy_static",
  "memoffset",
  "scopeguard",
 ]
@@ -242,15 +226,14 @@ dependencies = [
 
 [[package]]
 name = "crypto-hash"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "34903878eec1694faf53cae8473a088df333181de421d4d3d48061d6559fe602"
+checksum = "09de9ee0fc255ace04c7fa0763c9395a945c37c8292bb554f8d48361d1dcf1b4"
 dependencies = [
- "advapi32-sys 0.2.0",
  "commoncrypto",
  "hex",
- "openssl 0.9.0",
- "winapi 0.2.5",
+ "openssl",
+ "winapi 0.3.0",
 ]
 
 [[package]]
@@ -347,7 +330,7 @@ version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2e9763c69ebaae630ba35f74888db465e49e259ba1bc0eda7d06f4a067615d82"
 dependencies = [
- "bitflags 1.0.0",
+ "bitflags",
  "fuchsia-zircon-sys",
 ]
 
@@ -379,7 +362,7 @@ version = "0.3.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c817753e9a6ff928e71f62f5eb73478b1809b146ae0d2f5465be3bd1a8382579"
 dependencies = [
- "advapi32-sys 0.1.2",
+ "advapi32-sys",
  "winapi 0.2.5",
 ]
 
@@ -412,9 +395,9 @@ dependencies = [
 
 [[package]]
 name = "hex"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d6a22814455d41612f41161581c2883c0c6a1c41852729b17d5ed88f01e153aa"
+checksum = "b66c2649564633dd569707d91459ac1d2deefd9fa2a1def6fffc55b4bfee0b1f"
 
 [[package]]
 name = "http"
@@ -521,12 +504,6 @@ dependencies = [
  "winapi 0.2.5",
  "winapi-build",
 ]
-
-[[package]]
-name = "lazy_static"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4f9e1e434b35b61b6422b19998d5c219f6b4a90aae841583444b44077adb953b"
 
 [[package]]
 name = "lazy_static"
@@ -645,9 +622,9 @@ version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7530becae57a21b3325685bd5c98559c58cb57b7cc8c53e825cd85459b023ba9"
 dependencies = [
- "lazy_static 1.1.0",
+ "lazy_static",
  "libc 0.2.37",
- "openssl 0.10.9",
+ "openssl",
  "openssl-probe",
  "openssl-sys",
  "schannel",
@@ -699,26 +676,14 @@ checksum = "e04630a62b3f1cc8c58b4d8f2555a40136f02b420e158242936ef286a72d33a0"
 
 [[package]]
 name = "openssl"
-version = "0.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "62099ae76536c30307037a00b9a539d076dfa744e7931a674489dd198934d479"
-dependencies = [
- "bitflags 0.7.0",
- "lazy_static 0.2.0",
- "libc 0.2.37",
- "openssl-sys",
-]
-
-[[package]]
-name = "openssl"
 version = "0.10.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2517ad2c3c77ccbccc2b35fa5586cd675789964181cf66331dd1573a3ab795e"
 dependencies = [
- "bitflags 1.0.0",
+ "bitflags",
  "cfg-if",
  "foreign-types",
- "lazy_static 1.1.0",
+ "lazy_static",
  "libc 0.2.37",
  "openssl-sys",
 ]
@@ -892,7 +857,7 @@ version = "0.1.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dc1fabf2a7b6483a141426e1afd09ad543520a77ac49bd03c286e7696ccfd77f"
 dependencies = [
- "lazy_static 1.1.0",
+ "lazy_static",
  "winapi 0.3.0",
 ]
 
