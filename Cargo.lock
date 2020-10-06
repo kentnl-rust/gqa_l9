@@ -742,6 +742,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "percent-encoding"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "de154f638187706bde41d9b4738748933d64e6b37bdbffc0b47a97d16a6ae356"
+
+[[package]]
 name = "pkg-config"
 version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1218,12 +1224,13 @@ checksum = "8c1f860d7d29cf02cb2f3f359fd35991af3d30bac52c57d265a3c461074cb4dc"
 
 [[package]]
 name = "url"
-version = "1.2.0"
+version = "1.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "afe9ec54bc4db14bc8744b7fed060d785ac756791450959b2248443319d5b119"
+checksum = "2a321979c09843d272956e73700d12c4e7d3d92b2ee112b31548aef0d4efc5a6"
 dependencies = [
  "idna",
  "matches",
+ "percent-encoding",
 ]
 
 [[package]]
