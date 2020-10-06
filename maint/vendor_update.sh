@@ -64,6 +64,24 @@ oneshot_update() {
   exit 0
 }
 
+# Precise Mode
+# Sync ./ to vendor/
+# update one package to a specified version
+# update vendor/
+# sync vendor/ to ./
+precise_update() {
+  local package="$1"
+  local target="$2"
+
+  restore_config || exit 1
+  clean_backup_config || exit 1
+  update_check || exit 1
+  run_quote cargo update -v -p "${package}" -Z minimal-versions -Z no-index-update --precise "${target}" || exit 1
+  vendorize || exit 1
+  backup_config || exit 1
+  exit 0
+}
+
 # Do no work, just check for updates to vendor/
 check_updates() {
   restore_config || exit 1
@@ -75,6 +93,12 @@ if [[ -z "$1" ]]; then
   echo "Package to update omitted, doing update-check only"
   check_updates
   exit 1
+fi
+
+if [[ -n "$2" ]]; then
+  echo "Precise upgrading \"$1\" to version \"$2\""
+  precise_update "$1" "$2" || exit 1
+  exit 0
 fi
 
 echo "Updating \"$1\""
