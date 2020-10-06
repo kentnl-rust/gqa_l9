@@ -25,7 +25,6 @@
 #include <windows.h>
 #include <wincrypt.h>
 #include <stdio.h>
-#include <tchar.h>
 #endif
 
 #ifdef __APPLE__
@@ -37,7 +36,12 @@
 #endif
 #endif
 
+// Gonk has this symbol, but Android doesn't
+#ifndef TARGET_OS_GONK
 #ifdef __ANDROID__
+
+#include <android/api-level.h>
+#if __ANDROID_API__ < 21
 static time_t timegm(struct tm *tm) {
     time_t ret;
     char *tz;
@@ -56,6 +60,8 @@ static time_t timegm(struct tm *tm) {
     tzset();
     return ret;
 }
+#endif
+#endif
 #endif
 
 typedef struct {
@@ -103,7 +109,6 @@ static void tm_to_rust_tm(struct tm* in_tm,
 }
 
 #if defined(__WIN32__)
-#define TZSET() _tzset()
 #if defined(_MSC_VER) && (_MSC_VER >= 1400)
 #define GMTIME(clock, result) gmtime_s((result), (clock))
 #define LOCALTIME(clock, result) localtime_s((result), (clock))
@@ -124,16 +129,17 @@ static struct tm* LOCALTIME(const time_t *clock, struct tm *result) {
 #define TIMEGM(result) mktime((result)) - _timezone
 #endif
 #else
-#define TZSET() tzset()
-#define GMTIME(clock, result) gmtime_r((clock), (result))
-#define LOCALTIME(clock, result) localtime_r((clock), (result))
+
+#ifdef __native_client__
+#define TIMEGM(result) mktime((result)) - _timezone
+#else
 #define TIMEGM(result) timegm(result)
 #endif
 
-void
-rust_time_tzset() {
-    TZSET();
-}
+#define GMTIME(clock, result) gmtime_r((clock), (result))
+#define LOCALTIME(clock, result) localtime_r((clock), (result))
+
+#endif
 
 void
 rust_time_gmtime(int64_t sec, int32_t nsec, rust_time_tm *timeptr) {
@@ -144,19 +150,22 @@ rust_time_gmtime(int64_t sec, int32_t nsec, rust_time_tm *timeptr) {
     tm_to_rust_tm(&tm, timeptr, 0, nsec);
 }
 
-void
+int32_t
 rust_time_localtime(int64_t sec, int32_t nsec, rust_time_tm *timeptr) {
     struct tm tm;
     time_t s = sec;
-    LOCALTIME(&s, &tm);
+    if (LOCALTIME(&s, &tm) == NULL) { return 0; }
 
 #if defined(__WIN32__)
     int32_t utcoff = -timezone;
+#elif defined(__native_client__)
+    int32_t utcoff = _timezone;
 #else
     int32_t utcoff = tm.tm_gmtoff;
 #endif
 
     tm_to_rust_tm(&tm, timeptr, utcoff, nsec);
+    return 1;
 }
 
 int64_t
