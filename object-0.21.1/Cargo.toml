@@ -13,7 +13,7 @@
 [package]
 edition = "2018"
 name = "object"
-version = "0.21.0"
+version = "0.21.1"
 authors = ["Nick Fitzgerald <fitzgen@gmail.com>", "Philip Craig <philipjcraig@gmail.com>"]
 exclude = ["/.coveralls.yml", "/.travis.yml"]
 description = "A unified interface for reading and writing object file formats."
