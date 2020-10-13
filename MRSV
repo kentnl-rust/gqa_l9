@@ -1,0 +1,11 @@
+At the time of this commit, the minimum apparently supported rust is 1.33.0
+
+This is due to mime_guess v2.0.0 using the "import <> as _" syntax, which was stabilized
+in rust 1.33.0
+
+mime_guess >= v2.0.0 is required by reqwest v0.9.9
+
+reqwest >= v0.9.9 is required by static-http-cache v0.2.0
+
+All these versions and the required lockfiles for working with 1.33.0 are available
+in the `ancient-vendor-sources` branch.
