@@ -12,8 +12,19 @@ use warnings;
 #
 # Its up to you to copy the new file back into place.
 
-my $states = parse_meta("Cargo.lock");
-rewrite_file("Cargo.lock","Cargo.lock.new", $states);
+my ($source, $dest) = @ARGV;
+if ( not defined $source or not length $source ) {
+  $source = "Cargo.lock";
+}
+if ( not defined $dest or not length $dest ) {
+  $dest = $source . '.new';
+}
+my $temp = $source . '._out';
+
+my $states = parse_meta($source);
+rewrite_file($source,$temp, $states);
+system("mv", "-vf", $temp, $dest) == 0 or die "$! $?";
+
 1;
 
 sub fix_dep {
