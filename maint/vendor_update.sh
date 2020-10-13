@@ -5,6 +5,10 @@ run_quote() {
   "$@"
 }
 
+virtual_cargo() {
+  run_quote cargo "$@"
+}
+
 # Copy state from vendor/ dir so it can be used for
 # cargo update
 restore_config() {
@@ -26,12 +30,13 @@ clean_backup_config() {
 
 # No-changes, just check if Cargo.lock *could* change
 update_check() {
-  run_quote cargo outdated || exit 1
+  virtual_cargo outdated || exit 1
 }
 
 # Construct state in vendor/ as a reference point
 backup_config() {
   cp -v Cargo.lock vendor/ || exit 1
+  perl maint/old-lock.pl "Cargo.lock" "vendor/Cargo.lock.old_format" || exit 1;
   cp -v Cargo.toml vendor/Cargo.toml.orig || exit  1
   git rev-parse HEAD > vendor/master-commit || exit 1
   cat <<"EOF" > vendor/config
@@ -45,7 +50,7 @@ EOF
 
 # Build/clean/update vendor/  as per current Cargo.lock
 vendorize() {
-  run_quote cargo vendor -v -Z minimal-versions -Z no-index-update --versioned-dirs || exit 1
+  virtual_cargo vendor -v -Z minimal-versions -Z no-index-update --versioned-dirs || exit 1
 }
 
 # Sync ./ to vendor/
@@ -58,7 +63,7 @@ oneshot_update() {
   restore_config || exit 1
   clean_backup_config || exit 1
   update_check || exit 1
-  run_quote cargo update -v -Z no-index-update -p "${package}" || exit 1
+  virtual_cargo update -v -Z no-index-update -p "${package}" || exit 1
   vendorize || exit 1
   backup_config || exit 1
   exit 0
@@ -76,7 +81,7 @@ precise_update() {
   restore_config || exit 1
   clean_backup_config || exit 1
   update_check || exit 1
-  run_quote cargo update -v -p "${package}" -Z minimal-versions -Z no-index-update --precise "${target}" || exit 1
+  virtual_cargo update -v -p "${package}" -Z minimal-versions -Z no-index-update --precise "${target}" || exit 1
   vendorize || exit 1
   backup_config || exit 1
   exit 0
