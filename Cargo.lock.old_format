@@ -43,7 +43,7 @@ dependencies = [
  "libc 0.2.79 (registry+https://github.com/rust-lang/crates.io-index)",
  "miniz_oxide 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "object 0.21.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-demangle 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-demangle 0.1.18 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -1013,7 +1013,7 @@ dependencies = [
 
 [[package]]
 name = "rustc-demangle"
-version = "0.1.17"
+version = "0.1.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -1610,7 +1610,7 @@ dependencies = [
 "checksum remove_dir_all 0.5.3 (registry+https://github.com/rust-lang/crates.io-index)" = "3acd125665422973a33ac9d3dd2df85edad0f4ae9b00dafb1a05e43a9f5ef8e7"
 "checksum reqwest 0.9.24 (registry+https://github.com/rust-lang/crates.io-index)" = "f88643aea3c1343c804950d7bf983bd2067f5ab59db6d613a08e05572f2714ab"
 "checksum rust-argon2 0.8.2 (registry+https://github.com/rust-lang/crates.io-index)" = "9dab61250775933275e84053ac235621dfb739556d5c54a2f2e9313b7cf43a19"
-"checksum rustc-demangle 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)" = "b2610b7f643d18c87dff3b489950269617e6601a51f1f05aa5daefee36f64f0b"
+"checksum rustc-demangle 0.1.18 (registry+https://github.com/rust-lang/crates.io-index)" = "6e3bad0ee36814ca07d7968269dd4b7ec89ec2da10c4bb613928d3077083c232"
 "checksum rustc_version 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)" = "138e3e0acb6c9fb258b19b67cb8abd63c00679d2851805ea151465464fe9030a"
 "checksum ryu 1.0.5 (registry+https://github.com/rust-lang/crates.io-index)" = "71d301d4193d031abdd79ff7e3dd721168a9572ef3fe51a1517aba235bd8f86e"
 "checksum schannel 0.1.19 (registry+https://github.com/rust-lang/crates.io-index)" = "8f05ba609c234e60bee0d547fe94a4c7e9da733d1c962cf6e59efa4cd9c8bc75"
